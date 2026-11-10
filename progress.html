@@ -1,0 +1,17 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Build Progress | Lavi Co</title>
+<style>:root{--bg:#FAF9F7;--fg:#14213D;--card:#fff;--line:#dde1e6;--ok:#2F7D5B;--todo:#B5432B}@media(prefers-color-scheme:dark){:root{--bg:#0f1626;--fg:#e8ecf4;--card:#18223a;--line:#2b3754;--ok:#5fc79b;--todo:#f2a93b}}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,sans-serif;padding:24px}main{max-width:900px;margin:auto}
+.bar{height:14px;background:var(--line);border-radius:7px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ok);width:0}
+.row{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin:10px 0;display:flex;justify-content:space-between;gap:12px}
+.done{color:var(--ok);font-weight:600}.todo{color:var(--todo);font-weight:600}.g{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}</style></head><body><main>
+<h1>Lavi Co website: build progress</h1><p><b id="pct"></b> complete</p><div class="bar"><i id="f"></i></div>
+<h2>Planning agents</h2><div class="g" id="agents"></div><h2>Tasks</h2><div id="tasks"></div>
+<script>
+const agents=[["Site audit","Done","Found 6 pages; no license info; phone/address conflict on kitchens page"],["Design direction","Done","Blueprint-meets-brick palette, Barlow Condensed + Inter"],["SEO & conversion","Done","Keywords, schema, CTA placement, form fields"]];
+const tasks=[["Audit current lavicompany.com",1],["Design direction plan",1],["SEO & lead-conversion plan",1],["Home page",1],["6 service pages",1],["About + Reviews pages",1],["Contact / estimate form",1],["Local business schema (JSON-LD)",1],["Mobile sticky call bar",1],["Progress dashboard",1],["Git repository",1],["Push to GitHub",0],["Add real photos",0],["Add license/insurance numbers",0],["Confirm address & phone (old site conflicts)",0],["Point lavicompany.com domain at new site",0]];
+const d=tasks.filter(t=>t[1]).length,p=Math.round(d/tasks.length*100);
+pct.textContent=p+"% ("+d+"/"+tasks.length+")";f.style.width=p+"%";
+</script><script>
+document.getElementById("agents").innerHTML=agents.map(a=>`<div class="row" style="display:block"><b>${a[0]}</b><br><span class="done">${a[1]}</span><br><small>${a[2]}</small></div>`).join("");
+document.getElementById("tasks").innerHTML=tasks.map(t=>`<div class="row"><span>${t[0]}</span><span class="${t[1]?'done':'todo'}">${t[1]?'Done':'To do'}</span></div>`).join("");
+</script></main></body></html>
